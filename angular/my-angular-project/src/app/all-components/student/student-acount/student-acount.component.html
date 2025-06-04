@@ -1,0 +1,171 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div *ngIf="student" class="container-fluid"> 
+    <img src="assets/images/alomora.png" style="width: 100px; margin-left: 9px;" alt="logo">
+    <a class="navbar-brand" routerLink="/profilStu/{{ student.Idstudent }}">Welcome to Home of Allomorra!</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+
+      <div class="offcanvas-header">
+        <!-- Ici on doit mettre le nom de l'eleve qui s'affiche après la connexion avec database-->
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Welcome {{ student.name }}  {{ student.lastName }} !</h5> 
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <!-- page recherche -->
+          <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLink="/student-recherche/{{ student.Idstudent }}">Rechercher</a>
+            </li>
+          <!-- compte student qui va être relier avec chaque student dans notre db -->
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="/student-acount/{{ student.Idstudent }}">Your Acount</a>
+          </li>
+          <!-- les cours passés -->
+          <li class="nav-item">
+            <a class="nav-link"routerLink="/student-historic/{{ student.Idstudent }}">Historic of courses</a>
+          </li>
+          <!-- les cours futur -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/student-futur-courses/{{ student.Idstudent }}">Programmed courses</a>
+          </li>
+                    <!-- mes professeurs -->
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/my-teachers/{{ student.Idstudent }}">My Teachers</a>
+          </li>
+                    <!-- aide -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/aide">Help</a>
+          </li>
+        </ul>
+
+        <form class="d-flex mt-3" role="search">
+           <button class="btn btn-success" type="submit"><a routerLink="" routerLinkActive="active" style="margin-right: 20px;  color:white">Sign Out</a></button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<section class="text-center">
+
+  <div  style="
+  margin-top: -150px;
+  background-image: url(../assets/images/img7.jpg);
+  background-size: cover; 
+  background-position: center;
+  height: 900px;
+
+  ">
+  </div>
+<!-- Background image -->
+  <div style="
+    margin-left: 350px;
+    margin-top: -750px;
+    width: 50%;
+    background: hsla(0, 0%, 100%, 0.6);
+    backdrop-filter: blur(20px);
+    ">
+  </div>
+
+  
+  
+
+</section> 
+
+
+
+
+
+
+
+
+
+<div   *ngIf="student" style="margin-top: 80px;"  class="container text-center light-style flex-grow-1 container-p-y" >
+
+  <h2  style="margin-left: 5%;">
+    Account settings
+  </h2>
+
+  <div >
+    <div style="margin-left: 200px;"  class="row no-gutters row-bordered row-border-light">    
+      <div >
+       
+          <div class="tab-pane fade active show" id="account-general">
+            <div  class="card-body media align-items-center">
+              <form [formGroup]="modifystudentform"  style=" width: 50%; margin-left: 19%;">
+              <!-- 
+              <img style="width: 10%; margin-left: 290px;" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="d-block ui-w-80">
+              <div class="media-body ml-4">
+                <label style="width: 60%;" class="btn btn-outline-primary">
+                  Upload new photo
+                  <input type="file" class="account-settings-fileinput">
+                </label>
+              -->
+
+              <div class="card-body"> 
+                <div class="form-group">
+                  <label class="form-label">Last Name</label>
+                  <input style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%; margin-left: 25%" type="text" id="name"  class="form-control" value="{{ student.name }}" #name (change)="ModifyStudent.name = name.value"/>
+                </div>
+            
+                <div class="form-group">
+                  <label class="form-label">First Name  </label>
+                  <input style="border-color: rgb(70, 61, 99); border-width: 1px;  width:50%; margin-left: 25%;"  type="text" id="lastName" class="form-control" value="{{ student.lastName }}"  #lastName (change)="ModifyStudent.lastName = lastName.value" />
+                </div>
+
+                <div class="mb-4">
+                  <label for="inputAddress" class="form-label">Adress</label>
+                  <input  style="border-color: rgb(70, 61, 99); border-width: 1px;  width: 50%; margin-left: 25%"  type="text" class="form-control" id="adresse" placeholder="1234 Main St" value="{{ student.adresse }}"  #adresse (change)="ModifyStudent.adresse = adresse.value">
+                </div>
+
+                <div class="mb-4">
+                  <label  for="inputAddress" class="form-label">Class</label>
+                  <input style="border-color: rgb(70, 61, 99); border-width: 1px;  width: 50%;margin-left: 25%"  type="text" class="form-control" id="NameClass" placeholder="1234 Main St" value="{{ student.NameClass }}"  #NameClass (change)="ModifyStudent.NameClass = NameClass.value">
+                </div>
+              
+                <div class="form-group">
+                  <label class="form-label">E-mail</label>
+                  <input  style="border-color: rgb(70, 61, 99); border-width: 1px;  width: 50%; margin-left: 25%"  type="email" id="email" class="form-control" value="{{ student.email }}"  #email (change)="ModifyStudent.email = email.value"/>
+    
+                  <div class="form-group">
+                      <label class="form-label"> Password Actualy</label>
+                      <input  style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%;margin-left: 25%" 
+                      type="{{ passwordVisible ? 'text' : 'password' }}" id="motDePasse" name="motDePasse" class="form-control" value="{{ student.Pass }}" />
+                  </div>
+                 <br>
+                  <button (click)="togglePasswordVisibility()">
+                    {{ passwordVisible ? 'Hide' : 'Show🪄' }} Password
+                  </button>
+                  <br>
+                
+                <h4 class="form-label" style="border-color: rgb(70, 61, 99); border-width: 1px; width: 40%; margin-left:29%" > New Password ?</h4>
+                <div class="form-group">
+
+                  <input type="password" id="Pass" class="form-control" #Pass (change)="ModifyStudent.Pass = Pass.value"/>
+                </div>
+              </div>
+            </div>
+            </form>
+            
+            </div>
+  
+            
+           
+            
+        </div>
+        <br>
+        <div style="margin-right: 10%;">
+          <button type="button" class="btn btn-primary" (click)="SaveChanges()"> Save</button>&nbsp;
+         
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</div>      

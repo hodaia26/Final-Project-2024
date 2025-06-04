@@ -1,0 +1,55 @@
+/* Style général du conteneur */
+div {
+    width: 1000px; /* Augmentation de la largeur */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  
+  /* Style du label */
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Style de l'input */
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  /* Style du bouton "Fin du cours" */
+  button {
+    background-color: #077301;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 12px 24px; /* Agrandissement du bouton */
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Style pour changer l'apparence du bouton au survol */
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px; /* Espace entre les boutons et les autres éléments ci-dessus */
+  }
+  
+  .button-container button {
+    flex: 1;
+    margin-right: 10px; /* Espace horizontal entre les boutons */
+  }
+  

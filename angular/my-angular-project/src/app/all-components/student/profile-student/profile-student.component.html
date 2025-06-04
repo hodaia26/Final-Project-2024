@@ -1,0 +1,122 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div *ngIf="student" class="container-fluid"> 
+    <img src="assets/images/alomora.png" style="width: 100px; margin-left: 9px;" alt="logo">
+    <a class="navbar-brand" routerLink="/profilStu/{{ student.Idstudent }}">Welcome to Home of Allomorra!</a>
+    
+    
+    <div class="dropdown">
+      <button  (click)="ReadNoti()" class="btn btn-warning dropdown-toggle" type="button" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="bi bi-bell"></i>
+      </button>
+      <div  class="dropdown-menu" aria-labelledby="notificationDropdown">
+        <a *ngFor="let notification of notifications"  class="dropdown-item" href="#">{{ notification.Content }} ({{ notification.Date }})</a>
+      </div>
+    </div>
+    
+    
+    <button  class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+
+      <div class="offcanvas-header">
+        <!-- Ici on doit mettre le nom de l'eleve qui s'affiche après la connexion avec database-->
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Welcome {{ student.name }}  {{ student.lastName }} !</h5> 
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <!-- page recherche -->
+          <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLink="/student-recherche/{{ student.Idstudent }}">Rechercher</a>
+            </li>
+          <!-- compte student qui va être relier avec chaque student dans notre db -->
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="/student-acount/{{ student.Idstudent }}">Your Acount</a>
+          </li>
+          <!-- les cours passés -->
+          <li class="nav-item">
+            <a class="nav-link"routerLink="/student-historic/{{ student.Idstudent }}">Historic of courses</a>
+          </li>
+          <!-- les cours futur -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/student-futur-courses/{{ student.Idstudent }}">Programmed courses</a>
+          </li>
+                    <!-- mes professeurs -->
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/my-teachers/{{ student.Idstudent }}">My Teachers</a>
+          </li>
+                    <!-- aide -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/aide">Help</a>
+          </li>
+        </ul>
+
+        <form class="d-flex mt-3" role="search">
+           <button class="btn btn-success" type="submit"><a routerLink="" routerLinkActive="active" style="margin-right: 20px;  color:white">Sign Out</a></button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+<br><br><br><br>
+
+<section class="text-center">
+
+  <div  style="
+  margin-top: -150px;
+  background-image: url(../assets/images/img7.jpg);
+  background-size: cover; 
+  background-position: center;
+  height: 900px;
+
+  ">
+  </div>
+<!-- Background image -->
+  <div style="
+    margin-left: 350px;
+    margin-top: -750px;
+    width: 50%;
+    background: hsla(0, 0%, 100%, 0.6);
+    backdrop-filter: blur(20px);
+    ">
+  </div>
+
+  
+  
+
+</section> 
+
+
+
+
+<div class="text-center">
+  <h2>List of recommended teachers based on your class</h2>  
+  <table class="table table-success table-striped table-hover">   
+      <thead>
+        <tr>
+          <th scope="col">Name of Teacher</th>
+          <th scope="col">Last-Name of Teacher</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">adresse</th>
+          <th scope="col">price </th>
+        </tr>
+      </thead>
+      <br>
+      <tbody>      
+        <tr *ngFor="let teacher of teachers" (click)="showTeacherDetails(teacher)">
+         
+          <th scope="row">{{ teacher.lastName }}</th>
+          <td>{{ teacher.name }}</td>
+          <td>{{ teacher.email }}</td>
+          <td>{{ teacher.adresse }} - {{ teacher.Ville }}</td>
+          <td>{{ teacher.Prix }} (EUR) €</td>
+          
+        </tr>  
+        
+      </tbody>     
+  </table>
+</div>

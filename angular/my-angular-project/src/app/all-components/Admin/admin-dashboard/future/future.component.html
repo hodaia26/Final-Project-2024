@@ -1,0 +1,83 @@
+<nav style="background-color: rgb(187, 154, 219);" class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+  <a  class="navbar-brand"routerLink="/admin-dashboard">Home</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+   </button>
+ <div class="collapse navbar-collapse" id="navbarNav">
+   <ul class="navbar-nav">
+  <li class="nav-item">
+    <a class="nav-link "  routerLink="/teachers">All Teachers</a>
+  </li>
+    <li class="nav-item">
+                  <a class="nav-link active"routerLink="/students" aria-current="page">All Students</a>
+                </li>
+    <li class="nav-item">
+    <a class="nav-link" routerLink="/historic">Historic of courses</a>
+  </li>
+  <li class="nav-item">
+     <a class="nav-link" routerLink="/future">Future courses</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="">Log Out</a>
+     </li>
+    
+  </ul>
+  </div>
+    </div>
+ </nav>
+
+
+ <section class="text-center">
+
+  <div  style="
+  margin-top: -150px;
+  background-image: url(../assets/images/img7.jpg);
+  background-size: cover; 
+  background-position: center;
+  height: 900px;
+
+  ">
+  </div>
+<!-- Background image -->
+  <div style="
+    margin-left: 350px;
+    margin-top: -750px;
+    width: 50%;
+    background: hsla(0, 0%, 100%, 0.6);
+    backdrop-filter: blur(20px);
+    ">
+  </div>
+
+  
+  
+
+</section> 
+ <div class="std">
+  <table class="table text-center">
+     
+    <thead>
+      <tr>
+        <th scope="col">Id course</th>
+        <th scope="col">Domain</th>
+        <th scope="col">Subject of course</th>
+        <th scope="col">Teacher Name</th>
+        <th scope="col">Date start</th>
+        <th scope="col">Units</th>
+ 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses" >
+        
+        <th scope="row">{{ course.Idcourse }}</th>
+        <td>{{ course.Domaine }}</td>
+        <td>{{ course.Subject }}</td>
+        <td>{{ course.TeacherName }} {{ course.TeacherLastName }}</td>
+        <td>{{ course.Date }} a {{ course.classStart }}</td>
+        <td>{{ course.units }}</td>
+
+      </tr>
+    </tbody>
+    </table>
+  </div>

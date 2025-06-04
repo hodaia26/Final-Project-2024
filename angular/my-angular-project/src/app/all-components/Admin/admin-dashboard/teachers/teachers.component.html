@@ -1,0 +1,70 @@
+<nav style="background-color: rgb(187, 154, 219);" class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+    <a  class="navbar-brand"routerLink="/admin-dashboard">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+     </button>
+   <div class="collapse navbar-collapse" id="navbarNav">
+     <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link "  routerLink="/teachers">All Teachers</a>
+    </li>
+    <li class="nav-item">
+                   <a class="nav-link active"routerLink="/students" aria-current="page">All Students</a>
+                </li>
+    <li class="nav-item">
+    <a class="nav-link" routerLink="/historic">Historic of courses</a>
+   </li>
+   <li class="nav-item">
+       <a class="nav-link" routerLink="/future">Future courses</a>
+      </li>
+    </ul>
+    </div>
+      </div>
+   </nav>
+
+  
+<section class="text-center">
+
+  <div  style="
+  margin-top: -150px;
+  background-image: url(../assets/images/img7.jpg);
+  background-size: cover; 
+  background-position: center;
+  height: 900px;
+
+  ">
+  </div>
+<!-- Background image -->
+  <div style="
+    margin-left: 350px;
+    margin-top: -750px;
+    width: 50%;
+    background: hsla(0, 0%, 100%, 0.6);
+    backdrop-filter: blur(20px);
+    ">
+  </div>
+
+  
+  
+
+</section> 
+   <table class="table">
+     <thead>
+       <tr>
+        <th scope="col">First Name of teacher</th>
+        <th scope="col">Last Name of teacher</th>
+        <th scope="col">E-mail of tacher</th>
+     <th scope="col">delete </th>
+       </tr>
+   </thead>
+       <tbody>
+        <tr *ngFor="let professeur of professeurs">
+     <td scope="row">{{professeur.name}}</td>
+     <td>{{professeur.lastName}}</td>
+     <td>{{professeur.email}}</td>
+    <td><button><a (click)="DeleteTeacher(professeur.Idteacher)">Delete</a></button></td>
+       </tr>
+      </tbody>
+   </table>
+   

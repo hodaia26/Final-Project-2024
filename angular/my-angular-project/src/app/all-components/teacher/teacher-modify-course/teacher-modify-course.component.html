@@ -1,0 +1,85 @@
+<div>
+  <video id="video-background" autoplay muted loop>
+    <source src="assets/images/img7.jpg" type="image">
+  </video>
+  </div>
+  <div  style="
+  margin-top: -150px;
+  background-image: url(../assets/images/img7.jpg);
+  background-size: cover; 
+  background-position: center;
+  height: 2300px;
+  position: relative;
+
+  ">
+<div class="container text-center light-style flex-grow-1 container-p-y">
+  <h2 class="font-weight-bold py-3 mb-4">Course details</h2>
+  <div class="card overflow-hidden">
+    <div style="margin-left: 200px;" class="row no-gutters row-bordered row-border-light">
+      <div class="col-md-9">
+        <div class="tab-content">
+          <div class="tab-pane fade active show" id="account-general">
+            <div *ngFor="let course of courses" class="card-body media align-items-center">
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <input type="text" class="form-control mb-1" name="idcourse" [(ngModel)]="courseFormData.Idcourse" hidden>
+                    
+                    <input type="text" class="form-control mb-1" name="classEnd" [(ngModel)]="courseFormData.classEnd" hidden>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Domaine : {{ courseFormData.Domaine }}</label>
+                    <input type="text" class="form-control" name="domaine" [(ngModel)]="courseFormData.Domaine" hidden>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Subject : {{ courseFormData.Subject }}</label>
+                    <input type="text" class="form-control" name="subject" [(ngModel)]="courseFormData.idSubject" hidden>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Teacher : {{ courseFormData.TeacherName }}</label>
+                    <input type="text" class="form-control mb-1" name="teacherName" [(ngModel)]="courseFormData.TeacherName" hidden>
+                  </div>
+
+                  <div>
+                    <div>
+                      <button style="margin-left: 100px; background-color: green;" (click)="decrement()">Previous</button>
+                      <button style="margin-left: 100px; background-color: green;" (click)="today()">Today</button>
+                      <button style="margin-left: 100px; background-color: green;" (click)="increment()">Next</button>
+                    </div>
+                    <br>
+                    <div>
+                      <mwl-calendar-week-view  style="color: rgb(138, 3, 3); background-color: green;"
+                        [view]="view"
+                        [viewDate]="viewDate"
+                        [events]="combinedEvents"
+                        (eventClicked)="eventClicked($event)"
+                      ></mwl-calendar-week-view>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Units</label>
+                    <input type="text" class="form-control" name="units" [(ngModel)]="courseFormData.units">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Type Cours</label>
+                    <input type="text" class="form-control" name="Type" [(ngModel)]="courseFormData.Type">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=" mt-3">
+          <button type="button" class="btn btn-primary" (click)="SaveChanges()">Save changes</button>&nbsp;
+          <button type="button" class="btn btn-default" (click)="Cancel()">Cancel</button>
+          <br><br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

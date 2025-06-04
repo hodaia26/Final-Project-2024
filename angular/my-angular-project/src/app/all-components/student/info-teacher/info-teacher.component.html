@@ -1,0 +1,127 @@
+<div class="image">
+  <img src="assets/images/alomora.png" alt="top">
+
+</div>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .enclosed-div {
+    background-image: url(../assets/images/carte.png);
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 50%;
+    margin-left: 25%;
+  }
+</style>
+
+<div class="container">
+    <div class="row">
+      <!-- Partie gauche - Affichage des données de l'enseignant -->
+      <div class="col-md-6">
+        <h2 id="bold" > Informations of Teacher</h2>
+        <p>Image</p><br>
+        <img style="width: 40%;" *ngIf="teacher?.Image" [src]="teacher.Image" alt="Teacher Image" class="preview-image" /><br>
+        <p ><a id="bold" >Name:</a> {{ teacher.lastName }}</p>
+        <p><a id="bold" >LastName:</a> {{ teacher.name }}</p>
+        <p><a id="bold" >Gender:</a> {{ teacher.Genre }}</p>
+        <p><a id="bold" >Email: </a>{{ teacher.email }}</p>
+        <p><a id="bold" >Adresse: </a>{{ teacher.adresse }} / {{ teacher.Ville }}</p>
+        <p ><a id="bold" >Matiere: </a> <a *ngFor="let cot of cots" > {{ cot.Matiere }}. </a></p>
+        <p><a id="bold" >Profile:</a> {{ teacher.Description }}</p>
+        <p><a id="bold" >Price Of Cours: </a>{{ teacher.Prix }} (EUR) €</p>
+        <br><br>
+        <button class="btn btn-primary" (click)="EnvoyerMessage()">Send a Message </button>
+      </div>
+  
+      <!-- Partie droite - Création d'un nouveau cours -->
+      <div class="col-md-6">
+        <h2 id="bold3">Creating a new course</h2>
+        <form>
+          <!-- choix de la matière -->
+
+          
+          <div class="col-md-6">
+            <label for="DomainSelect" class="form-label" id="bold">Domain</label>
+            <select id="DomainSelect" class="form-select" name="adresse"  [(ngModel)]="newmatiere.matiere">
+              <option selected> -- Domain -- </option>
+              <option *ngFor="let subject of subjects" >{{ subject.name }}</option>
+            </select>
+          </div>
+          <!-- choix de la type presntiel ou zoom -->
+
+          <div class="form-group">
+            <label for="TypeDescription" id="bold3">Type Of cours</label>
+            <input class="form-control" id="Type" #Type (change)="newCourse.Type = Type.value">
+          </div>
+
+          <!-- choix de le units -->
+          <div class="form-group">
+            <label for="courseDescription" id="bold3">Units</label>
+            <input class="form-control" id="units" #units (change)="newCourse.units = units.value">
+          </div>
+          <br>
+   
+          <div>
+            <div>
+              <button style="margin-left: 100px; background-color: green;" (click)="decrement()">Previous</button>
+              <button style="margin-left: 100px; background-color: green;" (click)="today()">Today</button>
+              <button style="margin-left: 100px; background-color: green;" (click)="increment()">Next</button>
+            </div>
+            <br>
+            <div>
+              <mwl-calendar-week-view  style="color: rgb(138, 3, 3); background-color: green;"
+                [view]="view"
+                [viewDate]="viewDate"
+                [events]="combinedEvents"
+                (eventClicked)="eventClicked($event)"
+              ></mwl-calendar-week-view>
+            </div>
+          </div>
+          
+      
+
+        </form>
+        <br><br>
+      </div>
+
+
+
+
+
+
+
+
+
+  <div class="enclosed-div">
+  <h2 id="bold2">Informations de paiement</h2>
+  <div class="form-group">
+    <label for="" id="bold2">Coordonnées de la carte</label>
+    
+    <input type="form-control" class="form-control" id="0" placeholder="XXXX-XXXX-XXXX-XXXX"  #numero (change)="newpay.numero = numero.value"  />
+  </div>
+  <div class="form-group" >
+    <label for="" id="bold2">Date d'expiration</label>
+    <input type="date" class="form-control" id="0"  #date (change)="newpay.date = date.value" />
+  </div>
+  <div class="form-group">
+    <label for=""  id="bold2" >CVV</label>
+    <input type="form-control" class="form-control" id="0" #code (change)="newpay.code = code.value"  />
+  </div>
+</div>
+
+      <button class="btn" style="width: 20%; margin-left: 350px; margin-top: 10px;" (click)="Cancel()">Cancel</button>
+      <button class="btn" style="width: 20%; margin-left: 110px; margin-top: 10px;"  (click)="CreateCourse()">Create the cours</button>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+   <a>hodaia</a>   
+    </div>
+  </footer>

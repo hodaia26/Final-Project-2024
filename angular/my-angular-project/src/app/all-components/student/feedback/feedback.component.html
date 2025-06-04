@@ -1,0 +1,39 @@
+
+<section class="text-center">
+
+  <div  style="
+  margin-top: -150px;
+  background-image: url(../assets/images/img7.jpg);
+  background-size: cover; 
+  background-position: center;
+  height: 900px;
+
+  ">
+  </div>
+<!-- Background image -->
+  <div style="
+    margin-left: 350px;
+    margin-top: -750px;
+    width: 50%;
+    background: hsla(0, 0%, 100%, 0.6);
+    backdrop-filter: blur(20px);
+    ">
+  </div>
+
+  
+  
+
+</section> 
+<br><br><br><br><br><br><br><br>
+<form [formGroup]="feedbackform">
+  <div>
+    <label for="courseCompletion">give feedback if you want :</label>
+    <textarea id="courseCompletion" name="courseCompletion" placeholder="Entrez votre feedback ici..." #remark (change)="newfeedback.remark = remark.value"></textarea>
+    <label for="courseCompletion">mark for teacher :</label>
+    <input type="text" id="courseCompletion" name="courseCompletion" placeholder="**/***/*..." #point (change)="newfeedback.point = point.value">
+  </div>
+<br><br><br>
+  <div class="button-container">
+    <button type="button" (click)="Envoyer()">send</button>
+  </div>
+</form> 

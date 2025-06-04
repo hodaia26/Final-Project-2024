@@ -1,0 +1,96 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div *ngIf="teacher" class="container-fluid">
+    <img src="assets/images/alomora.png" style="width: 100px; margin-left: 9px;" alt="logo">
+    <a class="navbar-brand" routerLink="/teacher-dashboard/{{teacher.Idteacher}}">Welcome to Home of Allomorra!</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+
+      <div class="offcanvas-header">
+        <!-- Ici on doit mettre le nom de l'eleve qui s'affiche après la connexion avec database-->
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Welcome {{teacher.name}} {{teacher.lastName}} !</h5> 
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <!-- compte student qui va être relier avec chaque student dans notre db -->
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="/teacher-acount/{{teacher.Idteacher}}" >Your Acount</a>
+          </li>
+          <!-- les cours passés -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/teacher-historic/{{teacher.Idteacher}}">Historic of courses</a>
+          </li>
+          <!-- les cours futur -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/teacher-futur-courses/{{teacher.Idteacher}}">Programmed courses</a>
+          </li>
+            <!-- les cours cours du prof -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/coursim-of-teacher/{{teacher.Idteacher}}">coursim of teacher</a>
+            </li>
+            <!-- mes professeurs -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/my-students/{{teacher.Idteacher}}">My student</a>
+               </li>
+             <!-- mes disponibilites -->
+           <li class="nav-item">
+           <a class="nav-link" routerLink="/dispo-teacher/{{teacher.Idteacher}}">My disponibilities</a>
+            </li>
+
+           <!-- aide -->
+           <li class="nav-item">
+            <a class="nav-link" routerLink="/aide">Help</a>
+          </li>
+        </ul>
+
+        <form class="d-flex mt-3" role="search">
+           <button class="btn btn-success" type="submit"><a routerLink="" routerLinkActive="active" style="margin-right: 20px;  color:white">Sign Out</a></button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <div>
+  <video id="video-background" autoplay muted loop>
+    <source src="assets/images/video4.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div *ngIf="teacher" class="text-center">
+    <h2 >here your futur cours {{ teacher.name }}  {{ teacher.lastName }}</h2> 
+    </div>
+    <div class="std">
+      <table class="table table-primary table-striped table-hover text-center">
+     
+        <thead>
+          <tr>
+            <th scope="col">Id course</th>
+            <th scope="col">Unites</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Date start</th>
+            <th scope="col">Units</th>
+            <th scope="col">Type of cours</th>
+            <th scope="col">starting the cours </th>
+            <th scope="col">Modify</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sic of sics" >
+            <td scope="row">{{ sic.IdStudentInCourse }}</td>
+            <td>{{ sic.NameClass }}</td>
+            <td>{{ sic.StudentName }} {{ sic.StudentLastName }}</td>
+            <td>{{ sic.Date }} à {{ sic.ClassStart }}</td>  
+            <td>{{ sic.Units }}</td> 
+            <td>{{ sic.Type }}</td> 
+            <td><button class="mlk"><a routerLink="/teacher-current-course/{{ sic.IdCourse }}">start cour</a></button></td>
+            <td><button class="mlk"><a routerLink="/teacher-modify-course/{{ sic.IdCourse }}">Modify</a></button></td>
+            <td><button class="mlk1"><a (click)="DeleteCourse(sic.IdCourse)">Delete</a></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>

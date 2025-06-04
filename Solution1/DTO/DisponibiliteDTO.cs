@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DTO
+{
+    public class DisponibiliteDTO
+    {
+        public int IdDisponibilite { get; set; }
+        public System.DateTime DateStart { get; set; }
+        public System.DateTime dateend { get; set; }
+        public int IdTeacher { get; set; }
+
+    }
+}

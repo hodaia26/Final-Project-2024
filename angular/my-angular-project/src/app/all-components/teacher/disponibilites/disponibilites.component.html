@@ -1,0 +1,113 @@
+<p>disponibilites works!</p>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div *ngIf="teacher" class="container-fluid">
+      <img src="assets/images/alomora.png" style="width: 100px; margin-left: 9px;" alt="logo">
+      <a class="navbar-brand" routerLink="/teacher-dashboard/{{teacher.Idteacher}}">Welcome to Home of Allomorra!</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+  
+        <div class="offcanvas-header">
+          <!-- Ici on doit mettre le nom de l'eleve qui s'affiche après la connexion avec database-->
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Welcome {{teacher.name}} {{teacher.lastName}} !</h5> 
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <!-- compte student qui va être relier avec chaque student dans notre db -->
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLink="/teacher-acount/{{teacher.Idteacher}}" >Your Acount</a>
+            </li>
+            <!-- les cours passés -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/teacher-historic/{{teacher.Idteacher}}">Historic of courses</a>
+            </li>
+            <!-- les cours futur -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/teacher-futur-courses/{{teacher.Idteacher}}">Programmed courses</a>
+            </li>
+              <!-- les cours cours du prof -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/coursim-of-teacher/{{teacher.Idteacher}}">coursim of teacher</a>
+            </li>
+              <!-- les cours cours du prof -->
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/coursim-of-teacher/{{teacher.Idteacher}}">coursim of teacher</a>
+              </li>
+             <!-- mes professeurs -->
+          <li class="nav-item">
+           <a class="nav-link" routerLink="/my-students/{{teacher.Idteacher}}">My student</a>
+            </li>
+        
+             <!-- aide -->
+             <li class="nav-item">
+              <a class="nav-link" routerLink="/aide">Help</a>
+            </li>
+          </ul>
+  
+          <form class="d-flex mt-3" role="search">
+             <button class="btn btn-success" type="submit"><a routerLink="" routerLinkActive="active" style="margin-right: 20px;  color:white">Sign Out</a></button>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+<br>
+
+
+
+<div>
+  <video id="video-background" autoplay muted loop>
+    <source src="assets/images/img7.jpg" type="image">
+  </video>
+  </div>
+  <div  style="
+  margin-top: -150px;
+  background-image: url(../assets/images/img7.jpg);
+  background-size: cover; 
+  background-position: center;
+  height: 2000px;
+  position: relative;
+
+  ">
+ 
+
+
+  
+  
+
+
+  <div style="margin-left: 100px;">
+    <div>
+
+<button class="button"(click)="decrement()">Previous</button>
+<button class="button"(click)="today()">Today</button>
+<button class="button"(click)="increment()">Next</button>
+  
+
+
+
+
+
+
+
+
+    </div>
+    <br>
+    <div style="width:70%;">
+      
+      <mwl-calendar-week-view  style="color: rgb(138, 3, 3) ;"
+        [view]="view"
+        [viewDate]="viewDate"
+        [events]="combinedEvents"
+        (hourSegmentClicked)="hourClicked($event)"
+      ></mwl-calendar-week-view>
+    </div>
+<br>
+
+    <button class="btn btn-primary" (click)="CreateDisponibilite()">Ajouter</button>
+    <br>
+  </div>

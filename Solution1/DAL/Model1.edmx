@@ -1,0 +1,938 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SicoumProDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Classes">
+          <Key>
+            <PropertyRef Name="IdClaases" />
+          </Key>
+          <Property Name="IdClaases" Type="int" Nullable="false" />
+          <Property Name="NameClass" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="coursim">
+          <Key>
+            <PropertyRef Name="Idcourse" />
+          </Key>
+          <Property Name="Idcourse" Type="int" Nullable="false" />
+          <Property Name="idSubject" Type="int" Nullable="false" />
+          <Property Name="IDTeacher" Type="int" Nullable="false" />
+          <Property Name="classStart" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="classEnd" Type="nvarchar" MaxLength="10" />
+          <Property Name="units" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Statut" Type="nvarchar" MaxLength="10" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CoursimOfTeacher">
+          <Key>
+            <PropertyRef Name="IdCoursimOfTeacher" />
+          </Key>
+          <Property Name="IdCoursimOfTeacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTeacher" Type="int" Nullable="false" />
+          <Property Name="Matiere" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameClassStart" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameClassEnd" Type="nvarchar" MaxLength="50" />
+          <Property Name="prix" Type="int" />
+        </EntityType>
+        <EntityType Name="Disponibilite">
+          <Key>
+            <PropertyRef Name="IdDisponibilite" />
+          </Key>
+          <Property Name="IdDisponibilite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateStart" Type="datetime" Nullable="false" />
+          <Property Name="dateend" Type="datetime" Nullable="false" />
+          <Property Name="IdTeacher" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Domain">
+          <Key>
+            <PropertyRef Name="CodeDomaine" />
+          </Key>
+          <Property Name="CodeDomaine" Type="int" Nullable="false" />
+          <Property Name="domaineName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="IdfeedBack" />
+          </Key>
+          <Property Name="IdfeedBack" Type="int" Nullable="false" />
+          <Property Name="idStudent" Type="int" Nullable="false" />
+          <Property Name="idTeacher" Type="int" Nullable="false" />
+          <Property Name="point" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="remark" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="IdGenre" />
+          </Key>
+          <Property Name="IdGenre" Type="int" Nullable="false" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="IdMessage" />
+          </Key>
+          <Property Name="IdMessage" Type="int" Nullable="false" />
+          <Property Name="Texte" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdFrom" Type="int" Nullable="false" />
+          <Property Name="IdTo" Type="int" Nullable="false" />
+          <Property Name="TypeFrom" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="IdNotification" />
+          </Key>
+          <Property Name="IdNotification" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Readed" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdCourse" Type="int" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="Idstudent" />
+          </Key>
+          <Property Name="Idstudent" Type="int" Nullable="false" />
+          <Property Name="adresse" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameClass" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentInCourse">
+          <Key>
+            <PropertyRef Name="IdStudentInCourse" />
+          </Key>
+          <Property Name="IdStudentInCourse" Type="int" Nullable="false" />
+          <Property Name="idStudent" Type="int" Nullable="false" />
+          <Property Name="IdCourse" Type="int" Nullable="false" />
+          <Property Name="Pay" Type="bit" Nullable="false" />
+          <Property Name="StatusTeacher" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubjectOfCoursim">
+          <Key>
+            <PropertyRef Name="idSubject" />
+          </Key>
+          <Property Name="idSubject" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="domaineName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="teacher">
+          <Key>
+            <PropertyRef Name="Idteacher" />
+          </Key>
+          <Property Name="Idteacher" Type="int" Nullable="false" />
+          <Property Name="adresse" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="50" />
+          <Property Name="Prix" Type="nvarchar" MaxLength="50" />
+          <Property Name="Statut" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
+          <Property Name="Matiere" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TimesOfCourse">
+          <Key>
+            <PropertyRef Name="IdTime" />
+          </Key>
+          <Property Name="IdTime" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateStart" Type="datetime" Nullable="false" />
+          <Property Name="dateend" Type="datetime" Nullable="false" />
+          <Property Name="idcourse" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeCours">
+          <Key>
+            <PropertyRef Name="IdTypeCourse" />
+          </Key>
+          <Property Name="IdTypeCourse" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ville">
+          <Key>
+            <PropertyRef Name="IdVille" />
+          </Key>
+          <Property Name="IdVille" Type="int" Nullable="false" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__coursim__idSubje__3B75D760">
+          <End Role="SubjectOfCoursim" Type="Self.SubjectOfCoursim" Multiplicity="1" />
+          <End Role="coursim" Type="Self.coursim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectOfCoursim">
+              <PropertyRef Name="idSubject" />
+            </Principal>
+            <Dependent Role="coursim">
+              <PropertyRef Name="idSubject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Erreurs détectées durant la génération :
+avertissement 6035: La relation 'FK__coursim__Type__160F4887' a des colonnes qui ne font pas partie de la clé de la table du côté primaire de la relation. La relation a été exclue.
+        <Association Name="FK__coursim__Type__160F4887" />-->
+        <Association Name="FK__coursim__units__3A81B327">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+          <End Role="coursim" Type="Self.coursim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Idteacher" />
+            </Principal>
+            <Dependent Role="coursim">
+              <PropertyRef Name="IDTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoursimOf__IdTea__19AACF41">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+          <End Role="CoursimOfTeacher" Type="Self.CoursimOfTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Idteacher" />
+            </Principal>
+            <Dependent Role="CoursimOfTeacher">
+              <PropertyRef Name="IdTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Disponibi__IdTea__2EA5EC27">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Disponibilite" Type="Self.Disponibilite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Idteacher" />
+            </Principal>
+            <Dependent Role="Disponibilite">
+              <PropertyRef Name="IdTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Feedback__idStud__403A8C7D">
+          <End Role="student" Type="Self.student" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="Idstudent" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="idStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Feedback__idTeac__412EB0B6">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Idteacher" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="idTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__IdCou__756D6ECB">
+          <End Role="coursim" Type="Self.coursim" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coursim">
+              <PropertyRef Name="Idcourse" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Erreurs détectées durant la génération :
+avertissement 6035: La relation 'FK__student__NameCla__276EDEB3' a des colonnes qui ne font pas partie de la clé de la table du côté primaire de la relation. La relation a été exclue.
+        <Association Name="FK__student__NameCla__276EDEB3" />-->
+        <Association Name="FK__StudentIn__Datee__46E78A0C">
+          <End Role="student" Type="Self.student" Multiplicity="1" />
+          <End Role="StudentInCourse" Type="Self.StudentInCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="Idstudent" />
+            </Principal>
+            <Dependent Role="StudentInCourse">
+              <PropertyRef Name="idStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentIn__IdCou__5AEE82B9">
+          <End Role="coursim" Type="Self.coursim" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentInCourse" Type="Self.StudentInCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coursim">
+              <PropertyRef Name="Idcourse" />
+            </Principal>
+            <Dependent Role="StudentInCourse">
+              <PropertyRef Name="IdCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Erreurs détectées durant la génération :
+avertissement 6035: La relation 'FK__SubjectOf__domai__2D27B809' a des colonnes qui ne font pas partie de la clé de la table du côté primaire de la relation. La relation a été exclue.
+        <Association Name="FK__SubjectOf__domai__2D27B809" />-->
+        <!--Erreurs détectées durant la génération :
+avertissement 6035: La relation 'FK__teacher__Genre__17F790F9' a des colonnes qui ne font pas partie de la clé de la table du côté primaire de la relation. La relation a été exclue.
+        <Association Name="FK__teacher__Genre__17F790F9" />-->
+        <!--Erreurs détectées durant la génération :
+avertissement 6035: La relation 'FK__teacher__Ville__17036CC0' a des colonnes qui ne font pas partie de la clé de la table du côté primaire de la relation. La relation a été exclue.
+        <Association Name="FK__teacher__Ville__17036CC0" />-->
+        <Association Name="FK__TimesOfCo__idcou__625A9A57">
+          <End Role="coursim" Type="Self.coursim" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TimesOfCourse" Type="Self.TimesOfCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coursim">
+              <PropertyRef Name="Idcourse" />
+            </Principal>
+            <Dependent Role="TimesOfCourse">
+              <PropertyRef Name="idcourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SicoumProDBModelStoreContainer">
+          <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="coursim" EntityType="Self.coursim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoursimOfTeacher" EntityType="Self.CoursimOfTeacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disponibilite" EntityType="Self.Disponibilite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Domain" EntityType="Self.Domain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentInCourse" EntityType="Self.StudentInCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectOfCoursim" EntityType="Self.SubjectOfCoursim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="teacher" EntityType="Self.teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimesOfCourse" EntityType="Self.TimesOfCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeCours" EntityType="Self.TypeCours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ville" EntityType="Self.Ville" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__coursim__idSubje__3B75D760" Association="Self.FK__coursim__idSubje__3B75D760">
+            <End Role="SubjectOfCoursim" EntitySet="SubjectOfCoursim" />
+            <End Role="coursim" EntitySet="coursim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__coursim__units__3A81B327" Association="Self.FK__coursim__units__3A81B327">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="coursim" EntitySet="coursim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoursimOf__IdTea__19AACF41" Association="Self.FK__CoursimOf__IdTea__19AACF41">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="CoursimOfTeacher" EntitySet="CoursimOfTeacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Disponibi__IdTea__2EA5EC27" Association="Self.FK__Disponibi__IdTea__2EA5EC27">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="Disponibilite" EntitySet="Disponibilite" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Feedback__idStud__403A8C7D" Association="Self.FK__Feedback__idStud__403A8C7D">
+            <End Role="student" EntitySet="student" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Feedback__idTeac__412EB0B6" Association="Self.FK__Feedback__idTeac__412EB0B6">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__IdCou__756D6ECB" Association="Self.FK__Notificat__IdCou__756D6ECB">
+            <End Role="coursim" EntitySet="coursim" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentIn__Datee__46E78A0C" Association="Self.FK__StudentIn__Datee__46E78A0C">
+            <End Role="student" EntitySet="student" />
+            <End Role="StudentInCourse" EntitySet="StudentInCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentIn__IdCou__5AEE82B9" Association="Self.FK__StudentIn__IdCou__5AEE82B9">
+            <End Role="coursim" EntitySet="coursim" />
+            <End Role="StudentInCourse" EntitySet="StudentInCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TimesOfCo__idcou__625A9A57" Association="Self.FK__TimesOfCo__idcou__625A9A57">
+            <End Role="coursim" EntitySet="coursim" />
+            <End Role="TimesOfCourse" EntitySet="TimesOfCourse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SicoumProDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Classes">
+          <Key>
+            <PropertyRef Name="IdClaases" />
+          </Key>
+          <Property Name="IdClaases" Type="Int32" Nullable="false" />
+          <Property Name="NameClass" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Domain">
+          <Key>
+            <PropertyRef Name="CodeDomaine" />
+          </Key>
+          <Property Name="CodeDomaine" Type="Int32" Nullable="false" />
+          <Property Name="domaineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="IdfeedBack" />
+          </Key>
+          <Property Name="IdfeedBack" Type="Int32" Nullable="false" />
+          <Property Name="idStudent" Type="Int32" Nullable="false" />
+          <Property Name="idTeacher" Type="Int32" Nullable="false" />
+          <Property Name="point" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="student" Relationship="Self.FK__Feedback__idStud__403A8C7D" FromRole="Feedback" ToRole="student" />
+          <NavigationProperty Name="teacher" Relationship="Self.FK__Feedback__idTeac__412EB0B6" FromRole="Feedback" ToRole="teacher" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="IdGenre" />
+          </Key>
+          <Property Name="IdGenre" Type="Int32" Nullable="false" />
+          <Property Name="Genre1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="IdMessage" />
+          </Key>
+          <Property Name="IdMessage" Type="Int32" Nullable="false" />
+          <Property Name="Texte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdFrom" Type="Int32" Nullable="false" />
+          <Property Name="IdTo" Type="Int32" Nullable="false" />
+          <Property Name="TypeFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="IdNotification" />
+          </Key>
+          <Property Name="IdNotification" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Readed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdCourse" Type="Int32" />
+          <NavigationProperty Name="coursim" Relationship="SicoumProDBModel.FK__Notificat__IdCou__756D6ECB" FromRole="Notification" ToRole="coursim" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="Idstudent" />
+          </Key>
+          <Property Name="Idstudent" Type="Int32" Nullable="false" />
+          <Property Name="adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameClass" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Feedback" Relationship="Self.FK__Feedback__idStud__403A8C7D" FromRole="student" ToRole="Feedback" />
+          <NavigationProperty Name="StudentInCourse" Relationship="SicoumProDBModel.FK__StudentIn__Datee__46E78A0C" FromRole="student" ToRole="StudentInCourse" />
+        </EntityType>
+        <EntityType Name="SubjectOfCoursim">
+          <Key>
+            <PropertyRef Name="idSubject" />
+          </Key>
+          <Property Name="idSubject" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="domaineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="coursim" Relationship="SicoumProDBModel.FK__coursim__idSubje__3B75D760" FromRole="SubjectOfCoursim" ToRole="coursim" />
+        </EntityType>
+        <EntityType Name="teacher">
+          <Key>
+            <PropertyRef Name="Idteacher" />
+          </Key>
+          <Property Name="Idteacher" Type="Int32" Nullable="false" />
+          <Property Name="adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prix" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Statut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Matiere" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Feedback" Relationship="Self.FK__Feedback__idTeac__412EB0B6" FromRole="teacher" ToRole="Feedback" />
+          <NavigationProperty Name="coursim" Relationship="SicoumProDBModel.FK__coursim__units__3A81B327" FromRole="teacher" ToRole="coursim" />
+          <NavigationProperty Name="CoursimOfTeacher" Relationship="SicoumProDBModel.FK__CoursimOf__IdTea__19AACF41" FromRole="teacher" ToRole="CoursimOfTeacher" />
+          <NavigationProperty Name="Disponibilite" Relationship="SicoumProDBModel.FK__Disponibi__IdTea__2EA5EC27" FromRole="teacher" ToRole="Disponibilite" />
+        </EntityType>
+        <EntityType Name="TimesOfCourse">
+          <Key>
+            <PropertyRef Name="IdTime" />
+          </Key>
+          <Property Name="IdTime" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateend" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idcourse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="coursim" Relationship="SicoumProDBModel.FK__TimesOfCo__idcou__625A9A57" FromRole="TimesOfCourse" ToRole="coursim" />
+        </EntityType>
+        <EntityType Name="TypeCours">
+          <Key>
+            <PropertyRef Name="IdTypeCourse" />
+          </Key>
+          <Property Name="IdTypeCourse" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ville">
+          <Key>
+            <PropertyRef Name="IdVille" />
+          </Key>
+          <Property Name="IdVille" Type="Int32" Nullable="false" />
+          <Property Name="Ville1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Feedback__idStud__403A8C7D">
+          <End Role="student" Type="Self.student" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="Idstudent" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="idStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Feedback__idTeac__412EB0B6">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Idteacher" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="idTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SicoumProDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Classes" EntityType="Self.Classes" />
+          <EntitySet Name="Domain" EntityType="Self.Domain" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" />
+          <EntitySet Name="Message" EntityType="Self.Message" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" />
+          <EntitySet Name="student" EntityType="Self.student" />
+          <EntitySet Name="SubjectOfCoursim" EntityType="Self.SubjectOfCoursim" />
+          <EntitySet Name="teacher" EntityType="Self.teacher" />
+          <EntitySet Name="TimesOfCourse" EntityType="Self.TimesOfCourse" />
+          <EntitySet Name="TypeCours" EntityType="Self.TypeCours" />
+          <EntitySet Name="Ville" EntityType="Self.Ville" />
+          <AssociationSet Name="FK__Feedback__idStud__403A8C7D" Association="Self.FK__Feedback__idStud__403A8C7D">
+            <End Role="student" EntitySet="student" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Feedback__idTeac__412EB0B6" Association="Self.FK__Feedback__idTeac__412EB0B6">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <EntitySet Name="coursim" EntityType="SicoumProDBModel.coursim" />
+          <EntitySet Name="CoursimOfTeacher" EntityType="SicoumProDBModel.CoursimOfTeacher" />
+          <EntitySet Name="StudentInCourse" EntityType="SicoumProDBModel.StudentInCourse" />
+          <AssociationSet Name="FK__coursim__idSubje__3B75D760" Association="SicoumProDBModel.FK__coursim__idSubje__3B75D760">
+            <End Role="SubjectOfCoursim" EntitySet="SubjectOfCoursim" />
+            <End Role="coursim" EntitySet="coursim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__coursim__units__3A81B327" Association="SicoumProDBModel.FK__coursim__units__3A81B327">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="coursim" EntitySet="coursim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__IdCou__756D6ECB" Association="SicoumProDBModel.FK__Notificat__IdCou__756D6ECB">
+            <End Role="coursim" EntitySet="coursim" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentIn__IdCou__5AEE82B9" Association="SicoumProDBModel.FK__StudentIn__IdCou__5AEE82B9">
+            <End Role="coursim" EntitySet="coursim" />
+            <End Role="StudentInCourse" EntitySet="StudentInCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TimesOfCo__idcou__625A9A57" Association="SicoumProDBModel.FK__TimesOfCo__idcou__625A9A57">
+            <End Role="coursim" EntitySet="coursim" />
+            <End Role="TimesOfCourse" EntitySet="TimesOfCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CoursimOf__IdTea__19AACF41" Association="SicoumProDBModel.FK__CoursimOf__IdTea__19AACF41">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="CoursimOfTeacher" EntitySet="CoursimOfTeacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentIn__Datee__46E78A0C" Association="SicoumProDBModel.FK__StudentIn__Datee__46E78A0C">
+            <End Role="student" EntitySet="student" />
+            <End Role="StudentInCourse" EntitySet="StudentInCourse" />
+          </AssociationSet>
+          <EntitySet Name="Disponibilite" EntityType="SicoumProDBModel.Disponibilite" />
+          <AssociationSet Name="FK__Disponibi__IdTea__2EA5EC27" Association="SicoumProDBModel.FK__Disponibi__IdTea__2EA5EC27">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="Disponibilite" EntitySet="Disponibilite" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="coursim">
+          <Key>
+            <PropertyRef Name="Idcourse" />
+          </Key>
+          <Property Name="Idcourse" Type="Int32" Nullable="false" />
+          <Property Name="idSubject" Type="Int32" Nullable="false" />
+          <Property Name="IDTeacher" Type="Int32" Nullable="false" />
+          <Property Name="classStart" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="classEnd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="units" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Statut" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SubjectOfCoursim" Relationship="SicoumProDBModel.FK__coursim__idSubje__3B75D760" FromRole="coursim" ToRole="SubjectOfCoursim" />
+          <NavigationProperty Name="teacher" Relationship="SicoumProDBModel.FK__coursim__units__3A81B327" FromRole="coursim" ToRole="teacher" />
+          <NavigationProperty Name="Notification" Relationship="SicoumProDBModel.FK__Notificat__IdCou__756D6ECB" FromRole="coursim" ToRole="Notification" />
+          <NavigationProperty Name="StudentInCourse" Relationship="SicoumProDBModel.FK__StudentIn__IdCou__5AEE82B9" FromRole="coursim" ToRole="StudentInCourse" />
+          <NavigationProperty Name="TimesOfCourse" Relationship="SicoumProDBModel.FK__TimesOfCo__idcou__625A9A57" FromRole="coursim" ToRole="TimesOfCourse" />
+        </EntityType>
+        <EntityType Name="CoursimOfTeacher">
+          <Key>
+            <PropertyRef Name="IdCoursimOfTeacher" />
+          </Key>
+          <Property Name="IdCoursimOfTeacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTeacher" Type="Int32" Nullable="false" />
+          <Property Name="Matiere" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameClassStart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameClassEnd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prix" Type="Int32" />
+          <NavigationProperty Name="teacher" Relationship="SicoumProDBModel.FK__CoursimOf__IdTea__19AACF41" FromRole="CoursimOfTeacher" ToRole="teacher" />
+        </EntityType>
+        <EntityType Name="StudentInCourse">
+          <Key>
+            <PropertyRef Name="IdStudentInCourse" />
+          </Key>
+          <Property Name="IdStudentInCourse" Type="Int32" Nullable="false" />
+          <Property Name="idStudent" Type="Int32" Nullable="false" />
+          <Property Name="IdCourse" Type="Int32" Nullable="false" />
+          <Property Name="Pay" Type="Boolean" Nullable="false" />
+          <Property Name="StatusTeacher" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="coursim" Relationship="SicoumProDBModel.FK__StudentIn__IdCou__5AEE82B9" FromRole="StudentInCourse" ToRole="coursim" />
+          <NavigationProperty Name="student" Relationship="SicoumProDBModel.FK__StudentIn__Datee__46E78A0C" FromRole="StudentInCourse" ToRole="student" />
+        </EntityType>
+        <Association Name="FK__coursim__idSubje__3B75D760">
+          <End Type="SicoumProDBModel.SubjectOfCoursim" Role="SubjectOfCoursim" Multiplicity="1" />
+          <End Type="SicoumProDBModel.coursim" Role="coursim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectOfCoursim">
+              <PropertyRef Name="idSubject" />
+            </Principal>
+            <Dependent Role="coursim">
+              <PropertyRef Name="idSubject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__coursim__units__3A81B327">
+          <End Type="SicoumProDBModel.teacher" Role="teacher" Multiplicity="1" />
+          <End Type="SicoumProDBModel.coursim" Role="coursim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Idteacher" />
+            </Principal>
+            <Dependent Role="coursim">
+              <PropertyRef Name="IDTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__IdCou__756D6ECB">
+          <End Type="SicoumProDBModel.coursim" Role="coursim" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SicoumProDBModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coursim">
+              <PropertyRef Name="Idcourse" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentIn__IdCou__5AEE82B9">
+          <End Type="SicoumProDBModel.coursim" Role="coursim" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SicoumProDBModel.StudentInCourse" Role="StudentInCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coursim">
+              <PropertyRef Name="Idcourse" />
+            </Principal>
+            <Dependent Role="StudentInCourse">
+              <PropertyRef Name="IdCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TimesOfCo__idcou__625A9A57">
+          <End Type="SicoumProDBModel.coursim" Role="coursim" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SicoumProDBModel.TimesOfCourse" Role="TimesOfCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coursim">
+              <PropertyRef Name="Idcourse" />
+            </Principal>
+            <Dependent Role="TimesOfCourse">
+              <PropertyRef Name="idcourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CoursimOf__IdTea__19AACF41">
+          <End Type="SicoumProDBModel.teacher" Role="teacher" Multiplicity="1" />
+          <End Type="SicoumProDBModel.CoursimOfTeacher" Role="CoursimOfTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Idteacher" />
+            </Principal>
+            <Dependent Role="CoursimOfTeacher">
+              <PropertyRef Name="IdTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentIn__Datee__46E78A0C">
+          <End Type="SicoumProDBModel.student" Role="student" Multiplicity="1" />
+          <End Type="SicoumProDBModel.StudentInCourse" Role="StudentInCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="Idstudent" />
+            </Principal>
+            <Dependent Role="StudentInCourse">
+              <PropertyRef Name="idStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Disponibilite">
+          <Key>
+            <PropertyRef Name="IdDisponibilite" />
+          </Key>
+          <Property Name="IdDisponibilite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateend" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdTeacher" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="teacher" Relationship="SicoumProDBModel.FK__Disponibi__IdTea__2EA5EC27" FromRole="Disponibilite" ToRole="teacher" />
+        </EntityType>
+        <Association Name="FK__Disponibi__IdTea__2EA5EC27">
+          <End Type="SicoumProDBModel.teacher" Role="teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SicoumProDBModel.Disponibilite" Role="Disponibilite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Idteacher" />
+            </Principal>
+            <Dependent Role="Disponibilite">
+              <PropertyRef Name="IdTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SicoumProDBModelStoreContainer" CdmEntityContainer="SicoumProDBEntities">
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="SicoumProDBModel.Classes">
+              <MappingFragment StoreEntitySet="Classes">
+                <ScalarProperty Name="IdClaases" ColumnName="IdClaases" />
+                <ScalarProperty Name="NameClass" ColumnName="NameClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Domain">
+            <EntityTypeMapping TypeName="SicoumProDBModel.Domain">
+              <MappingFragment StoreEntitySet="Domain">
+                <ScalarProperty Name="CodeDomaine" ColumnName="CodeDomaine" />
+                <ScalarProperty Name="domaineName" ColumnName="domaineName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedback">
+            <EntityTypeMapping TypeName="SicoumProDBModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="IdfeedBack" ColumnName="IdfeedBack" />
+                <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+                <ScalarProperty Name="idTeacher" ColumnName="idTeacher" />
+                <ScalarProperty Name="point" ColumnName="point" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genre">
+            <EntityTypeMapping TypeName="SicoumProDBModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="IdGenre" ColumnName="IdGenre" />
+                <ScalarProperty Name="Genre1" ColumnName="Genre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="SicoumProDBModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="IdMessage" ColumnName="IdMessage" />
+                <ScalarProperty Name="Texte" ColumnName="Texte" />
+                <ScalarProperty Name="IdFrom" ColumnName="IdFrom" />
+                <ScalarProperty Name="IdTo" ColumnName="IdTo" />
+                <ScalarProperty Name="TypeFrom" ColumnName="TypeFrom" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notification">
+            <EntityTypeMapping TypeName="SicoumProDBModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="IdNotification" ColumnName="IdNotification" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Readed" ColumnName="Readed" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student">
+            <EntityTypeMapping TypeName="SicoumProDBModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="Idstudent" ColumnName="Idstudent" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="NameClass" ColumnName="NameClass" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectOfCoursim">
+            <EntityTypeMapping TypeName="SicoumProDBModel.SubjectOfCoursim">
+              <MappingFragment StoreEntitySet="SubjectOfCoursim">
+                <ScalarProperty Name="idSubject" ColumnName="idSubject" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="domaineName" ColumnName="domaineName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teacher">
+            <EntityTypeMapping TypeName="SicoumProDBModel.teacher">
+              <MappingFragment StoreEntitySet="teacher">
+                <ScalarProperty Name="Idteacher" ColumnName="Idteacher" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Matiere" ColumnName="Matiere" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimesOfCourse">
+            <EntityTypeMapping TypeName="SicoumProDBModel.TimesOfCourse">
+              <MappingFragment StoreEntitySet="TimesOfCourse">
+                <ScalarProperty Name="IdTime" ColumnName="IdTime" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="dateend" ColumnName="dateend" />
+                <ScalarProperty Name="idcourse" ColumnName="idcourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeCours">
+            <EntityTypeMapping TypeName="SicoumProDBModel.TypeCours">
+              <MappingFragment StoreEntitySet="TypeCours">
+                <ScalarProperty Name="IdTypeCourse" ColumnName="IdTypeCourse" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ville">
+            <EntityTypeMapping TypeName="SicoumProDBModel.Ville">
+              <MappingFragment StoreEntitySet="Ville">
+                <ScalarProperty Name="IdVille" ColumnName="IdVille" />
+                <ScalarProperty Name="Ville1" ColumnName="Ville" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="coursim">
+            <EntityTypeMapping TypeName="SicoumProDBModel.coursim">
+              <MappingFragment StoreEntitySet="coursim">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="units" ColumnName="units" />
+                <ScalarProperty Name="classEnd" ColumnName="classEnd" />
+                <ScalarProperty Name="classStart" ColumnName="classStart" />
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+                <ScalarProperty Name="idSubject" ColumnName="idSubject" />
+                <ScalarProperty Name="Idcourse" ColumnName="Idcourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoursimOfTeacher">
+            <EntityTypeMapping TypeName="SicoumProDBModel.CoursimOfTeacher">
+              <MappingFragment StoreEntitySet="CoursimOfTeacher">
+                <ScalarProperty Name="prix" ColumnName="prix" />
+                <ScalarProperty Name="NameClassEnd" ColumnName="NameClassEnd" />
+                <ScalarProperty Name="NameClassStart" ColumnName="NameClassStart" />
+                <ScalarProperty Name="Matiere" ColumnName="Matiere" />
+                <ScalarProperty Name="IdTeacher" ColumnName="IdTeacher" />
+                <ScalarProperty Name="IdCoursimOfTeacher" ColumnName="IdCoursimOfTeacher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentInCourse">
+            <EntityTypeMapping TypeName="SicoumProDBModel.StudentInCourse">
+              <MappingFragment StoreEntitySet="StudentInCourse">
+                <ScalarProperty Name="StatusTeacher" ColumnName="StatusTeacher" />
+                <ScalarProperty Name="Pay" ColumnName="Pay" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+                <ScalarProperty Name="IdStudentInCourse" ColumnName="IdStudentInCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disponibilite">
+            <EntityTypeMapping TypeName="SicoumProDBModel.Disponibilite">
+              <MappingFragment StoreEntitySet="Disponibilite">
+                <ScalarProperty Name="IdTeacher" ColumnName="IdTeacher" />
+                <ScalarProperty Name="dateend" ColumnName="dateend" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="IdDisponibilite" ColumnName="IdDisponibilite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

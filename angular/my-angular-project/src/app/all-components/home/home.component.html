@@ -1,0 +1,51 @@
+<!--<h2 style="margin:0; padding-top:0px;font-size: 200%;">Welcome to Home of Allomorra!</h2>-->
+<nav style="background-color: #012d71" class="navbar navbar-default">
+  <div  class="navbar-header">
+    <h2 style="margin-left: 420px; margin-top: -60px; color:white">Welcome to Home of Allomorra!</h2>
+  </div>
+
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+          <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            <a routerLink="/signin-teacher" routerLinkActive="active" style="margin-right: -200px; margin-top: -80px; color:white" class="btn btn-default">Sign In As Teacher</a>
+          </div>
+        </div>
+
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+          <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            <a routerLink="/signin" routerLinkActive="active" style="margin-right: 20px; margin-top: -80px; color:white" class="btn btn-default">Sign In As Student</a>
+          </div>
+        </div>
+</nav>
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centered Image</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img {
+      max-width: 120%; /* Ensure the image doesn't exceed the width of its container */
+      max-height: 120vh; /* Ensure the image doesn't exceed the height of the viewport */
+    }
+  </style>
+</head>
+<body>
+  <img src="assets/images/alomora.png" alt="Centered Image">
+  <button class="but" type="submit" style="position:absolute;right:250px;top:480px;"  (click)="selectRole('teacher')">I am a Teacher 👨‍🏫</button>
+<button class="but" style="position:absolute;left:301px;top:480px;" (click)="selectRole('student')">I am a Student 🧑‍🎓</button>
+
+</body>
+
+
+
+
+

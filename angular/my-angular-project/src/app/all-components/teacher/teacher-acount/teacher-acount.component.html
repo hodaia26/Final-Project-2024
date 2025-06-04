@@ -1,0 +1,187 @@
+<nav *ngFor="let teacher of teachers" class="navbar navbar-dark bg-dark fixed-top">
+    <div *ngIf="teacher" class="container-fluid">
+      <img src="assets/images/alomora.png" style="width: 100px; margin-left: 9px;" alt="logo">
+      <a class="navbar-brand" routerLink="/teacher-dashboard/{{teacher.Idteacher}}">Welcome to Home of Allomorra!</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+  
+        <div class="offcanvas-header">
+          <!-- Ici on doit mettre le nom de l'eleve qui s'affiche après la connexion avec database-->
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Welcome {{teacher.name}} {{teacher.lastName}} !</h5> 
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <!-- compte student qui va être relier avec chaque student dans notre db -->
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLink="/teacher-acount/{{teacher.Idteacher}}" >Your Acount</a>
+            </li>
+            <!-- les cours passés -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/teacher-historic/{{teacher.Idteacher}}">Historic of courses</a>
+            </li>
+            <!-- les cours futur -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/teacher-futur-courses/{{teacher.Idteacher}}">Programmed courses</a>
+            </li>
+              <!-- les cours cours du prof -->
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/coursim-of-teacher/{{teacher.Idteacher}}">coursim of teacher</a>
+              </li>
+             <!-- mes professeurs -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/my-students/{{teacher.Idteacher}}">My students</a>
+           </li>
+              <!-- mes disponibilites -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dispo-teacher/{{teacher.Idteacher}}">My disponibilities</a>
+           </li>
+            <!-- aide -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/aide">Help</a>
+            </li>
+          </ul>
+  
+          <form class="d-flex mt-3" role="search">
+             <button class="btn btn-success" type="submit"><a routerLink="" routerLinkActive="active" style="margin-right: 20px;  color:white">Log Out</a></button>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  
+<div>
+  <video id="video-background" autoplay muted loop>
+    <source src="assets/images/img7.jpg" type="image">
+  </video>
+  </div>
+  <div  style="
+  margin-top: -150px;
+  background-image: url(../assets/images/img7.jpg);
+  background-size: cover; 
+  background-position: center;
+  height: 1300px;
+  position: relative;
+
+  ">
+ 
+
+ 
+
+
+
+
+
+  <h2  style="margin-left: 44%;">
+    Account settings
+  </h2>
+
+
+
+    <div style="margin-left: 200px;"  class="row no-gutters row-bordered row-border-light">
+
+      
+
+          <div class="tab-pane fade active show" id="account-general">
+
+            <div *ngFor="let teacher of teachers" class="card-body media align-items-center">
+
+              <form [formGroup]="modifyteacherform" style=" width: 50%; margin-left: 19%;">
+                
+              <!-- Ajout du champ pour l'image -->
+              <div class="form-group">
+                <br>
+                <img  style="width: 25%;" *ngIf="teacher?.Image" [src]="teacher.Image" alt="Teacher Image" class="preview-image" />
+                <br><br>
+                <input  type="file" accept="image/*" #Image (change)="handleFileInput($event)" />
+              </div>
+
+                <div class="form-group">
+                  <label style="margin-left: 45%;" class="form-label">First Name: </label>
+                  <input style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%; margin-left: 25%" type="text" id="name"  class="form-control" value="{{ teacher.name }}" #name (change)="ModifyTeacher.name = name.value"/>
+                </div>
+             
+                <div class="form-group">
+                  <label  style="margin-left: 45%;"  class="form-label">Last Name:</label>
+                  <input style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%; margin-left: 25%"  type="text" id="lastName" class="form-control" value="{{ teacher.lastName }}"  #lastName (change)="ModifyTeacher.lastName = lastName.value" />
+                </div>
+
+                <div class="form-group">
+                  <label  style="margin-left: 45%;"  for="inputAddress" class="form-label">Gender:</label>
+                  <input  style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%; margin-left: 25%"  type="text" class="form-control" id="Genre" placeholder="Male ou Female" value="{{ teacher.Genre }}"  #Genre (change)="ModifyTeacher.Genre = Genre.value">
+                </div>
+
+                <div class="form-group">
+                  <label  style="margin-left: 45%;"  for="inputAddress" class="form-label">Adress</label>
+                  <input style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%; margin-left: 25%"  type="text" class="form-control" id="adresse" placeholder="1234 Main St" value="{{ teacher.adresse }}"  #adresse (change)="ModifyTeacher.adresse = adresse.value">
+                </div>
+
+                <!-- Ajouter ici .................................... -->
+
+                <div class="form-group">
+                  <label  style="margin-left: 45%;"  for="inputAddress" class="form-label">Town</label>
+                  <input style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%; margin-left: 25%"  type="text" class="form-control" id="Ville" value="{{ teacher.Ville }}"  #Ville (change)="ModifyTeacher.Ville = Ville.value">
+                </div>
+                
+             <!--    <div class="form-group">
+                  <label  style="margin-left: 45%;"  class="form-label">Domaine</label>
+                  <input style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%; margin-left: 25%"  type="text" id="Matiere" class="form-control" value="{{ teacher.Matiere }}" #Matiere (change)="ModifyTeacher.Matiere = Matiere.value" />
+                </div>
+ -->
+ <a style="color:red">you must write what are your domain of your description</a>
+                <div class="form-group">
+                  <label   style="margin-left: 45%;"  class="form-label"> Teacher ? </label>
+                  <textarea style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%; margin-left: 25%"  type="text" id="Description" class="form-control" value="{{ teacher.Description }}"  #Description (change)="ModifyTeacher.Description = Description.value"></textarea>
+                </div>
+                   
+                <div class="form-group">
+                  <label  style="margin-left: 45%;"  for="inputAddress" class="form-label">Price: </label>
+                  <input style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%; margin-left: 25%"  type="text" class="form-control" id="Prix" value="{{ teacher.Prix }}"  #Prix (change)="ModifyTeacher.Prix = Prix.value">
+                </div>
+
+                
+                <div class="form-group">
+                  <label  style="margin-left: 45%;"  class="form-label">E-mail</label>
+                  <input style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%; margin-left: 25%"   type="email" id="email" class="form-control" value="{{ teacher.email }}"  #email (change)="ModifyTeacher.email = email.value"/>
+                </div>
+                
+               
+              <div class="form-group">
+                <label class="form-label"> Password Actualy</label>
+                <input  style="border-color: rgb(70, 61, 99); border-width: 1px; width: 50%;margin-left: 25%" 
+                type="{{ passwordVisible ? 'text' : 'password' }}" id="motDePasse" name="motDePasse" class="form-control" value="{{ teacher.pass }}" />
+            </div>
+           
+
+            <button (click)="togglePasswordVisibility()">
+              {{ passwordVisible ? 'Hide' : 'Show🪄' }} Password
+            </button>
+            <br>
+          
+          <h4 class="form-label" style="border-color: rgb(70, 61, 99); border-width: 1px; width: 40%; margin-left:29%" > New Password ?</h4>
+          <div class="form-group">
+
+            <input type="password" id="Pass" class="form-control" #Pass (change)="ModifyTeacher.pass = Pass.value"/>
+          </div>
+      
+      </form>
+  
+
+
+  <br>
+
+
+  <div style="margin-right: 100px;">
+    <button type="button" class="btn btn-primary" (click)="SaveChanges()"> Save</button>&nbsp;
+
+  </div>
+  </div>
+</div>
+</div>      

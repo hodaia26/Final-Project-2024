@@ -1,0 +1,41 @@
+<p>student-message works!</p>
+
+<section class="text-center">
+
+    <div  style="
+    margin-top: -150px;
+    background-image: url(../assets/images/img7.jpg);
+    background-size: cover; 
+    background-position: center;
+    height: 900px;
+  
+    ">
+    </div>
+  <!-- Background image -->
+    <div style="
+      margin-left: 350px;
+      margin-top: -750px;
+      width: 50%;
+      background: hsla(0, 0%, 100%, 0.6);
+      backdrop-filter: blur(20px);
+      ">
+    </div>
+  
+    
+    
+  
+  </section> 
+  
+<div id="chat-container">
+    <div id="chat-messages">
+        <div *ngFor="let Smessage of Smessages" >{{ Smessage.TypeFrom }} : {{ Smessage.Texte }}:{{ Smessage.Time }}</div>
+    </div>
+    <div id="user-input">
+        <input type="text" id="message-input" placeholder="Type your message..." #Texte (change)="newmessage.Texte = Texte.value" >
+        <button (click)="sendMessage()">Send</button>
+    </div>
+   
+
+</div>
+
+<script src="chat.js"></script>

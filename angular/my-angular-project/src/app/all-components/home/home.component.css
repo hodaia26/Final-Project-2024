@@ -1,0 +1,25 @@
+
+/* Button styles */
+.but {
+  margin: 90px;
+  display: inline-block;
+  padding: 20px 40px;
+
+  font-size:25px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: #2c32e6;
+}
+
+nav{
+  height: 60px;
+}
+
+/* Button hover effect */
+.but:hover {
+  opacity: 0.8;
+}
+
+

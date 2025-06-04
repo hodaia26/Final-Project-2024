@@ -1,0 +1,135 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div *ngIf="student" class="container-fluid"> 
+    <img src="assets/images/alomora.png" style="width: 100px; margin-left: 9px;" alt="logo">
+    <a class="navbar-brand" routerLink="/profilStu/{{ student.Idstudent }}">Welcome to Home of Allomorra!</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+
+      <div class="offcanvas-header">
+        <!-- Ici on doit mettre le nom de l'eleve qui s'affiche après la connexion avec database-->
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Welcome {{ student.name }}  {{ student.lastName }} !</h5> 
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <!-- page recherche -->
+          <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLink="/student-recherche/{{ student.Idstudent }}">Rechercher</a>
+            </li>
+          <!-- compte student qui va être relier avec chaque student dans notre db -->
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="/student-acount/{{ student.Idstudent }}">Your Acount</a>
+          </li>
+          <!-- les cours passés -->
+          <li class="nav-item">
+            <a class="nav-link"routerLink="/student-historic/{{ student.Idstudent }}">Historic of courses</a>
+          </li>
+          <!-- les cours futur -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/student-futur-courses/{{ student.Idstudent }}">Programmed courses</a>
+          </li>
+                    <!-- mes professeurs -->
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="/my-teachers/{{ student.Idstudent }}">My Teachers</a>
+          </li>
+                    <!-- aide -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/aide">Help</a>
+          </li>
+        </ul>
+
+        <form class="d-flex mt-3" role="search">
+           <button class="btn btn-success" type="submit"><a routerLink="" routerLinkActive="active" style="margin-right: 20px;  color:white">Sign Out</a></button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</nav>
+  
+  <br><br><br><br>
+  
+  <section class="text-center">
+  
+    <div  style="
+    margin-top: -150px;
+    background-image: url(../assets/images/img3.jpg);
+    height: 900px;
+    ">
+    </div>
+  <!-- Background image -->
+  
+    <div style="
+      margin-left: 350px;
+      margin-top: -750px;
+      width: 50%;
+      background: hsla(0, 0%, 100%, 0.6);
+      backdrop-filter: blur(20px);
+      ">
+      <div class="card-body py-5 px-md-5">
+        <form style="width:100%;" class="row g-3">
+          <div class="row d-flex justify-content-center">
+            <div  class="d-flex mt-3">
+              <h4 style="margin-left: 150px; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;"  class="offcanvas-title" id="offcanvasDarkNavbarLabel"> search according to the criteria </h4> 
+            </div>
+            <br><br><br><br>    
+            <!-- Triage selon la ville -->
+            <div class="col-md-6">
+              <label for="VilleSelect" class="form-label" style="font-family: 'Noto Sans Hebrew', sans-serif; font-weight: bold;"> City</label>
+              <select id="Ville" class="form-select" name="adresse"  [(ngModel)]="newsearch.Ville">
+                <option selected> -- Town -- </option>
+                <option *ngFor="let ville of Villes" >{{ ville.Ville1 }}</option>
+              </select>
+            </div>
+
+            <!-- Triage selon la Matiere -->
+            <div class="col-md-6">
+              <label for="MatiereSelect" class="form-label" style="font-family: 'Noto Sans Hebrew', sans-serif; font-weight: bold;">: trend</label>
+              <select id="Matiere" class="form-select" name="Matiere"  [(ngModel)]="newsearch.Matiere">
+                <option selected> -- Domain -- </option>
+                <option *ngFor="let domaine of Domaines" >{{ domaine.domaineName }}</option>
+              </select>
+            </div>
+
+            <!-- Triage selon le Genre -->
+            <div class="col-md-6">
+              <label for="GenreSelect" class="form-label" style="font-family: 'Noto Sans Hebrew', sans-serif; font-weight: bold;
+              "> Gender</label>
+              <select id="Genre" class="form-select" name="Genre"  [(ngModel)]="newsearch.Genre">
+                <option selected> -- Gender -- </option>
+                <option *ngFor="let genre of genres" >{{genre.Genre1 }}</option>
+              </select>
+            </div>
+<br>
+            <!-- Triage selon le Prix -->
+            <!--  <div class="col-md-6">
+              <label for="PrixSelect" class="form-label">Prix max</label>
+              <select id="Prix" class="form-select" name="Prix"  [(ngModel)]="newsearch.Prix">
+                <option selected> -- Prix -- </option>
+                <option *ngFor="let teacher of teachers" >{{ teacher.Prix }}</option>
+              </select>
+            </div>-->
+            
+            <!-- Triage selon le niveau  -->
+            <div class="col-md-6">
+              <label for="niveauSelect" class="form-label" style="font-family: 'Noto Sans Hebrew', sans-serif; font-weight: bold;"> class</label>
+              <select  id="niveauSelect" class="form-select"  name="NameClass" [(ngModel)]="newsearch.NameClass">
+                <option selected> -- Grade -- </option>
+                <option *ngFor="let classe of classes" >{{ classe.NameClass }}</option>
+              </select>
+            </div>
+           
+       
+            <br><br><br><br> 
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" (click)="rechercher()">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+  </section> 

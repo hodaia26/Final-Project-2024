@@ -1,0 +1,53 @@
+
+<section class="text-center">
+
+    <div  style="
+    margin-top: -150px;
+    background-image: url(../assets/images/img7.jpg);
+    background-size: cover; 
+    background-position: center;
+    height: 900px;
+  
+    ">
+    </div>
+  <!-- Background image -->
+    <div style="
+      margin-left: 350px;
+      margin-top: -750px;
+      width: 50%;
+      background: hsla(0, 0%, 100%, 0.6);
+      backdrop-filter: blur(20px);
+      ">
+    </div>
+  
+</section> 
+<br><br><br>
+  <form>
+    <form>
+      <div class="text-center">
+        <h2>list of teachers according to your criteria </h2>  
+        <table class="table table-success table-striped table-hover">   
+            <thead>
+              <tr>
+                <th scope="col">name of teacher</th>
+                <th scope="col">firstname</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">adresse</th>
+                <th scope="col">Domaine</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <br>
+            <tbody>      
+              <tr *ngFor="let teacher of teachers" (click)="showTeacherDetails(teacher)">
+                <th scope="row">{{ teacher.lastName }}</th>
+                <td>{{ teacher.name }}</td>
+                <td>{{ teacher.email }}</td>
+                <td>{{ teacher.adresse }} - {{ teacher.Ville }}</td>
+                <td>{{ teacher.Matiere }}</td>
+                <td>{{ teacher.Prix }} (EUR) €</td>
+              </tr>     
+            </tbody>     
+        </table>
+      </div>
+    </form>
